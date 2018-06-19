@@ -1,10 +1,10 @@
-{{< layout}} 
+{{< layout}}
 
 {{+ link}}
 <link href="{{__data__.baseUrl}}/css/to_login.css" rel="stylesheet" />
 {{/link}}
 
-{{+ content}} 
+{{+ content}}
 <div class="introduction-wrapper container">
     <!-- <h3>Introduction</h3>
     <div class="lesson-content">
@@ -25,19 +25,19 @@
                     <li>Ship to go medium long things of the past.Wait for a ship’s person Wait for one Finally what to wait for until has </li>
                     <li>Wild crane stands still the memory ship to go medium long things of to come and go soul wild crane stands</li>
                     <li>The past.Wait for a ship medium long things</li>
-                </ul>    
+                </ul>
             </div>
         </li>
         <li>
             <span>Ages:</span>
             <div>Suitable for all</div>
         </li>
-        </ul>  
+        </ul>
     </div> -->
     <p class="info text-center">For more information, please</p>
-        
+
     <div class="opt-btn text-center">
-        <a type="button" href="http://keepwork.com/wiki/join" class="el-button el-button--primary is-plain">{{__data__.string.signup}}</a>
+        <a type="button" href="{{__data__.keepworkHost}}/wiki/join" class="el-button el-button--primary is-plain">{{__data__.string.signup}}</a>
         <button type="button" id="btnLogin" class="el-button el-button--primary">{{__data__.string.login}}</button>
     </div>
 </div>
@@ -46,7 +46,7 @@
         var host = location.protocol + '//' + window.location.host;
         var strWindowFeatures = 'width=800,height=500,resizable=yes';
         var winObj = window.open(
-            keepworkHost + "/wiki/oauth?response_type=code&client_id=1000001&redirect_uri=" +
+            KEEPWORK_HOST + "/wiki/oauth?response_type=code&client_id=1000001&redirect_uri=" +
             host  + "/login",
             "keepwork登录", strWindowFeatures);
         winObj.focus();
@@ -58,6 +58,6 @@
             }
         }, 500);
     })
-    
+
 </script>
 {{/ content}}

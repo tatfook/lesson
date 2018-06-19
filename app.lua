@@ -7,7 +7,7 @@
 local express = NPL.load('express');
 local cors = NPL.load('cors');
 local app = express:new();
-local sitecfg = NPL.load('../confi/siteConfig');
+local sitecfg = NPL.load('./confi/siteConfig');
 local lang_cn = NPL.load('./confi/language/string_cn');
 local lang_en = NPL.load('./confi/language/string_en');
 
@@ -42,8 +42,6 @@ app:use(function(req, res, next)
 	res.__data__.baseUrl = sitecfg.lessonHost;
 	res.__data__.keepworkHost = sitecfg.keepworkHost;
 	if not (url:startsWith('/api/') or url:startsWith('/imgs/') or url:startsWith('/css/') or url:startsWith('/js/') or url:startsWith('/jslib/') or url:startsWith('/csslib/') or url:startsWith('/icons/')or url:startsWith('/uploads/') ) then
-		-- 初始化
-		res.__data__ = {};
 		-- 获取 Accect Language，优先 Cookie 设置， 然后 Accect Language， 最后默认 en
 		local resource = lang_en; -- 缺省值
 		local langStr = 'EN'; -- 缺省值
