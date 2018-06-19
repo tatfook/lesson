@@ -1,6 +1,5 @@
 /node_modules/ 
 /public/js/
-/public/mgjs/
 /public/css/
 /public/uploads/ 
 *.log
