@@ -2,7 +2,7 @@
   "name": "lesson",
   "version": "0.0.1",
   "scripts": {
-    "start": "npls ./bin/www.lua"
+    "start": "npl ./bin/www.npl"
   },
   "description": "lesson project",
   "author": "CaoYongfeng <me@caoyongfeng.com>",

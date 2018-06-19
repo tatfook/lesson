@@ -18,6 +18,13 @@ https://github.com/caoyongfeng0214/lesson
     /app.js 添加 res.__data__.baseUrl 来配置 `lesson` 需要放置的域<br/>
 3. 执行 sql 脚本
 > /sql/db.sql 创建数据库与表结构
-4. 将 /luasql.so （Linux 下）文件放在 `lesson` 项目根目录下 
+4. 将 /luasql.so （Linux 下）文件放在 `lesson` 项目根目录下
 > 注： Linux 下编译 `NPLRuntime` 之前需要安装 `mysql` 程序才有作用
-5.  在根目录下运行 npl -d bin/www.npl 
+5.  在根目录下运行 npl -d bin/www.npl
+
+# js 编译
+
+```
+npm install gulpjs/gulp.git#4.0 --global
+gulp
+```
