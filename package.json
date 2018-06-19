@@ -9,11 +9,10 @@
   "description": "lesson project",
   "author": "CaoYongfeng <me@caoyongfeng.com>",
   "dependencies": {
-    "cors": "*",
     "express": "*",
     "lustache": "*",
-    "mysql": "*",
-    "qs": "^6.5.2"
+    "cors": "*",
+    "mysql": "*"
   },
   "devDependencies": {
     "axios": "^0.18.0",

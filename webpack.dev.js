@@ -11,9 +11,7 @@ module.exports = merge(common, {
     proxy: [
       {
         context: ["/_mg", "/api"],
-        target: "http://localhost:3000",
-        //跨域
-        changeOrigin: true
+        target: "http://localhost:3000"
       }
     ]
   },

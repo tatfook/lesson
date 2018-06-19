@@ -1,11 +1,16 @@
 import React from "react";
-import { Table, Button, Popconfirm, Modal, Input, message } from "antd";
+import { Table, Button, Popconfirm, Modal, Input, Alert } from "antd";
+
+//ajax
+import Axios from "axios";
 
 //API
 import API from "../../API";
 
 //title
 import Title from "../title";
+//tableData
+import TableData from "../../tableData";
 
 class Category extends React.Component {
   constructor(props) {
@@ -31,8 +36,8 @@ class Category extends React.Component {
       },
       {
         title: "添加时间",
-        dataIndex: "createTime",
-        key: "createTime",
+        dataIndex: "time",
+        key: "time",
         align: "center"
       }
       // 暂不需要删除
@@ -62,14 +67,13 @@ class Category extends React.Component {
     ];
 
     this.state = {
-      CategoryData: [],
+      CategoryData: TableData.categoryData,
       nameDisabled: false,
       visible: false,
       confirmLoading: false,
       typeName: "",
-      pageSize: 10,
-      pageNo: 1,
-      totalPage: 0
+      errorVisible: false,
+      errorMsg: ""
     };
     this.addManager = this.addManager.bind(this);
     //暂时没有
@@ -77,7 +81,6 @@ class Category extends React.Component {
     this.handleUpdateCancel = this.handleUpdateCancel.bind(this);
     this.handleUpdateOk = this.handleUpdateOk.bind(this);
     this.handleTypeNameChange = this.handleTypeNameChange.bind(this);
-    this.changePage = this.changePage.bind(this);
   }
 
   //删除管理员类别
@@ -93,49 +96,39 @@ class Category extends React.Component {
   }
   //输入框监听事件
   handleTypeNameChange(e) {
-    this.setState({ typeName: e.target.value, errorVisible: false });
+    this.setState({ typeName: e.target.value });
   }
   //确认添加
-  async handleUpdateOk() {
+  handleUpdateOk() {
     if (this.state.typeName !== "") {
       this.setState({
         nameDisabled: true,
         confirmLoading: true
       });
-      const res = await API.postUpsertType({ name: this.state.typeName });
-
+      const res = Axios.post(API.postUpsertType, { name: this.state.typeName });
+      console.log(res);
       if (res.err === 0) {
-        const list = this.state.CategoryData;
         this.setState({
           visible: false,
-          confirmLoading: false,
-          CategoryData: list
+          confirmLoading: false
         });
       } else {
-        message.error(res.msg);
+        this.setState({
+          errorVisible: true,
+          errorMsg: res.msg
+        });
       }
     } else {
-      message.error("请输入类别名称");
+      this.setState({
+        errorVisible: true,
+        errorMsg: "请输入类别名称"
+      });
     }
   }
   //取消添加
   handleUpdateCancel() {
     this.setState({
       visible: false
-    });
-  }
-  //翻页
-  async changePage(page, pageSize) {
-    await API.getAdminTypeList({ pageNo: page, pageSize: pageSize });
-  }
-  //获取当前类别列表
-  async componentWillMount() {
-    const res = await API.getAdminTypeList();
-    this.setState({
-      CategoryData: res.data,
-      pageSize: res.page.pageSize,
-      pageNo: res.page.pageNo,
-      totalPage: res.page.totalPage
     });
   }
   render() {
@@ -145,10 +138,8 @@ class Category extends React.Component {
       confirmLoading,
       nameDisabled,
       typeName,
-      pageSize,
-      pageNo,
-      totalPage,
-      changePage
+      errorVisible,
+      errorMsg
     } = this.state;
     return (
       <div>
@@ -164,17 +155,11 @@ class Category extends React.Component {
           ]}
         />
         <Table
-          rowKey={record => record.sn}
+          rowKey={record => record.id}
           columns={columns}
           dataSource={this.state.CategoryData}
-          hideOnSinglePage
-          Pagination={{
-            defaultCurrent: pageNo,
-            total: totalPage,
-            pageSize: pageSize,
-            onChange: changePage
-          }}
         />
+        {errorVisible && <Alert message={errorMsg} type="error" />}
         <Modal
           title="添加类别"
           visible={visible}
