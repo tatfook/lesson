@@ -31,7 +31,7 @@ $(function(){
 
             //用户图片
             if( !userinfo.portrait.startWith("http") ){
-                userinfo.portrait = keepworkHost + userinfo.portrait;
+                userinfo.portrait = KEEPWORK_HOST + userinfo.portrait;
             }
             $('.portrait').attr( 'src', userinfo.portrait );
 
@@ -50,7 +50,7 @@ $(function(){
             //是否存在推荐人 存在不显示推荐人模块
             if( !userinfo.presenter ){
                 $( '.presenter' ).removeClass('display-none').addClass('display-block');
-                
+
             }
         }
     })
@@ -68,7 +68,7 @@ $(function(){
                         message : R.msg_add_presenter
                     })
                     $('.coins-num').html( response.data.coin);
-                    
+
                     //提交成功隐藏推荐模块
                     $('.presenter').fadeOut(500);
                 }else if( response.err == 104 ){
@@ -92,7 +92,7 @@ $(function(){
                 message : R.msg_not_valid_account
             })
         }
-        
+
     })
     var pno = 1,psize = 50;
     //获取当前用户学习记录
@@ -103,7 +103,7 @@ $(function(){
         if(response.err == 0) {
             if( !Array.isArray(response.data) ){
                 $( '.no-data' ).removeClass('display-none').addClass('display-block');
-            }else{       
+            }else{
                 $( '.package-list' ).removeClass('display-none').addClass('display-block');
                 //课程包数量
                 $('.lesson-total').html( response.page.totalCount );
@@ -117,16 +117,16 @@ $(function(){
                         item.ageMsg = item.agesMin + '-' + item.agesMax;
                     }
                     //继续学习链接
-                   
+
                     //未订阅链接为空
                    if( item.subscribeState == 2){
                         item.url = ''
                    }else if( item.subscribeState == 1 ){
-                        item.url = item.nextLearnLesson ? keepworkHost + item.nextLearnLesson : keepworkHost + item.firstLessonUrl;
+                        item.url = item.nextLearnLesson ? KEEPWORK_HOST + item.nextLearnLesson : KEEPWORK_HOST + item.firstLessonUrl;
                    }
                    //课程包链接
                    if( !item.packageUrl.startWith("http") ){
-                        item.packageUrl = keepworkHost + item.packageUrl;
+                        item.packageUrl = KEEPWORK_HOST + item.packageUrl;
                     }
                     //课程包列表
                     var str = '<div class="el-col el-col-12 el-col-xs-12 el-col-sm-12 el-col-md-8 el-col-lg-8 el-col-xl-8">'+
@@ -139,7 +139,7 @@ $(function(){
                     '    <div class="skills">' + R.skills + ': <span>'+ item.skills +'</span></div>'+
                     '    <div class="progress">'
 
-                    //进度  
+                    //进度
                     var proNum = Number(((item.doneCount/item.lessonCount)*100).toFixed(1));
                     if( proNum > 100 ){
                         item.lessonProgress = 100;
@@ -153,7 +153,7 @@ $(function(){
                     }else{
                         if( item.doneCount == 0 ){
                             //未开始学习
-                            str += '<div class="start"><a href="'+ keepworkHost + item.firstLessonUrl +'" class="el-button el-button--primary el-button--mini"><span>' + R.start_to_learn + '<span></a></div>'
+                            str += '<div class="start"><a href="'+ KEEPWORK_HOST + item.firstLessonUrl +'" class="el-button el-button--primary el-button--mini"><span>' + R.start_to_learn + '<span></a></div>'
                         }else{
                             //进度条
                             str += '<div class="lessons-progress">'+
@@ -171,20 +171,20 @@ $(function(){
                             '<div class="continu-btn">';
                             if(item.url == ''){
                                 //未购买不跳转弹窗显示请先购买
-                                str += '<button class="btn_continue continue el-button el-button--primary el-button--mini"><span>Continue</span></button>'                                    
+                                str += '<button class="btn_continue continue el-button el-button--primary el-button--mini"><span>Continue</span></button>'
                             }else{
                                 //继续学习
-                                str += '<a href="'+ item.url +'" class="continue el-button el-button--primary el-button--mini"><span>' + R.continue + '</span></a>'                                      
+                                str += '<a href="'+ item.url +'" class="continue el-button el-button--primary el-button--mini"><span>' + R.continue + '</span></a>'
                             }
                             str += '</div></div>'
                         }
-                        
+
                     }
 
                     str += '</div></div>';
 
                     $('.lesson-list .el-row').append(str)
-                    
+
                 }
                 //请先购买弹窗
                 $('.btn_continue').on('click',function(){
@@ -194,11 +194,11 @@ $(function(){
                         message: R.msg_plz_add_pkg
                     })
                 })
-                
+
             }
         }
     })
 
-    
-    
+
+
 });

@@ -26,14 +26,12 @@ String.prototype.startWith = function(s) {
 
 String.prototype.replaceAll = function(f, e) {
     var reg=new RegExp(f,"g");
-    return this.replace(reg,e); 
+    return this.replace(reg,e);
 }
 
-// var keepworkHost = 'http://localhost:8080';
-var keepworkHost = 'http://10.27.26.21:8080';
 /**
  * number format english eg: 1 -> 1st 2 -> 2nd
- * @param number 
+ * @param number
  */
 var genEnNum = function( number ) {
     if( isNaN(number) ) {
@@ -58,7 +56,7 @@ var genEnNum = function( number ) {
 
 /**
  * format date -> Friday 27th, April, 2018
- * @param dateStr 
+ * @param dateStr
  */
 var fmtDate = function( dateStr , fmtStr ) {
     var weekArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -74,10 +72,10 @@ var fmtDate = function( dateStr , fmtStr ) {
     return week + ' ' + day + ', ' + month + ', ' + year;
 }
 
-/* 
+/*
     open dialog
     @params  label string
-             message string 
+             message string
              input boolean
              cancelBtn boolean
              callback return input.val
@@ -92,7 +90,7 @@ var openDialog = function( params,callback ){
     params.message = params.message ? params.message :'';
     // 添加弹窗信息class
     params.messageClass = params.messageClass ? params.messageClass : ''
- 
+
     //弹窗内容
     var str = '<div tabindex="-1" role="dialog" aria-modal="true" aria-label="'+ params.label +'" class="open-dialog el-message-box__wrapper" style="z-index: 2081;">'
             +'<div class="el-message-box el-message-box--center" style="height:'+ params.height +';width:'+ params.width +'">'
@@ -124,7 +122,7 @@ var openDialog = function( params,callback ){
         + '<span>Cancel</span>'
         +'</button>';;
     }
-            
+
     str += '<button type="button" class="ok-btn el-button el-button--default el-button--small el-button--primary ">'
     +   '<span>OK</span>'
     +'</button>'
@@ -137,7 +135,7 @@ var openDialog = function( params,callback ){
 
     //相关操作
     //关闭弹窗
-    
+
     $( '.open-dialog .close-icon,.open-dialog .cancel-btn' ).on('click',function(){
         $('.open-dialog,.v-modal').fadeOut(500);
     })

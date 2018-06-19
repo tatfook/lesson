@@ -14,9 +14,11 @@
 </head>
 <body>
     <input hidden value="{{__data__.baseUrl}}" id="baseURL"/>
+    <input hidden value="{{__data__.keepworkHost}}" id="keepworkHost"/>
     <input hidden value="{{__data__.frontResource}}" id="frontResource" />
     <script>
         var LESSON_API = $('#baseURL').val() || '';
+        var KEEPWORK_HOST = $('#keepworkHost').val() || '';
         var R = JSON.parse( $('#frontResource').val() );
     </script>
     {{^__data__.headerShow}}
@@ -31,9 +33,9 @@
                 <a href="{{__data__.baseUrl}}/teacherColumn" class="{{teacherCurrent}}">{{__data__.string.teacher_column}}</a>
             </div>
             <div class="to-download">
-                <a href="http://www.paracraft.cn/download" target="_blank">Paracraft<i class="el-icon-download"></i></a>    
-            </div>  
-        </div>   
+                <a href="http://www.paracraft.cn/download" target="_blank">Paracraft<i class="el-icon-download"></i></a>
+            </div>
+        </div>
     </div>
     {{/__data__.headerShow}}
     <div class="main">
@@ -45,19 +47,19 @@
             if (window.parent !== window) {
                 var height = $('body').outerHeight() + 400;
                 console.log('lesson echo: ' + height)
-                window.parent.postMessage({cmd:'element_style', selector:'iframeId', style:{'height':height + 'px'}}, 'http://localhost:8080');
+                window.parent.postMessage({cmd:'element_style', selector:'iframeId', style:{'height':height + 'px'}}, KEEPWORK_HOST);
             }
         // }, 1000)
 
         function getCookie(c_name) {
             if (document.cookie.length>0){
                 c_start=document.cookie.indexOf(c_name + "=")
-                if (c_start!=-1) { 
-                    c_start=c_start + c_name.length+1 
+                if (c_start!=-1) {
+                    c_start=c_start + c_name.length+1
                     c_end=document.cookie.indexOf(";",c_start)
                     if (c_end==-1) c_end=document.cookie.length
                     return unescape(document.cookie.substring(c_start,c_end))
-                } 
+                }
             }
             return ""
         }

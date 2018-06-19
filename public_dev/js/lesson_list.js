@@ -1,8 +1,8 @@
 $(function(){
-    $.ajax({  
-        type : "GET",  
-        url : LESSON_API + "/api/class/pkgs",   
-        complete:function(response) {  
+    $.ajax({
+        type : "GET",
+        url : LESSON_API + "/api/class/pkgs",
+        complete:function(response) {
             var r = JSON.parse(response.responseText)
             $('.lesson-total').text(r.hits.total);
             var data = r.hits.hits;
@@ -16,7 +16,7 @@ $(function(){
                     }else{
                         item.ageMsg = item.agesMin + '-' + item.agesMax;
                     }
-                    
+
                    //课程包列表
                    var str = '<div class="el-col el-col-12 el-col-xs-12 el-col-sm-12 el-col-md-8 el-col-lg-8 el-col-xl-8">'+
                    '<div class="item">'+
@@ -29,10 +29,10 @@ $(function(){
                    '    <div class="skills">' + R.skills + ': <span>'+ item.skills +'</span></div>'+
                    ' </div> '
                     $('.el-row').append(str);
-                }   
+                }
             }
-        }  
-    }); 
+        }
+    });
     mdToJson = function(md) {
         var result;
         try {
@@ -55,14 +55,14 @@ $(function(){
         }
         if(lessonData) {
             item.title = lessonData.lessonPackage.data.title;
-            item.url = keepworkHost + item.url;
+            item.url = KEEPWORK_HOST + item.url;
             item.cover = lessonData.lessonPackage.data.cover;
             item.skills = lessonData.lessonPackage.data.skills;
             item.agesMin = lessonData.lessonPackage.data.agesMin;
             item.agesMax = lessonData.lessonPackage.data.agesMax;
             item.cost = lessonData.lessonPackage.data.cost;
             item.lessonCount = lessonData.lessonPackage.data.lessonCount;
-           
+
         }
     }
 });

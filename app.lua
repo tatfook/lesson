@@ -7,6 +7,7 @@
 local express = NPL.load('express');
 local cors = NPL.load('cors');
 local app = express:new();
+local sitecfg = NPL.load('../confi/siteConfig');
 local lang_cn = NPL.load('./confi/language/string_cn');
 local lang_en = NPL.load('./confi/language/string_en');
 
@@ -27,7 +28,7 @@ app:use(function(req, res, next)
 	-- if string.find(host, 'keepwork.com') then
 	if host then
 		res:setHeader('Access-Control-Allow-Origin', host);
-		res:setHeader('Access-Control-Allow-Credentials', 'true');		
+		res:setHeader('Access-Control-Allow-Credentials', 'true');
 	end
 	next(req, res, next);
 end);
@@ -37,6 +38,9 @@ app:use(express.session());
 
 app:use(function(req, res, next)
 	local url = req.url;
+	res.__data__ = {};
+	res.__data__.baseUrl = sitecfg.lessonHost;
+	res.__data__.keepworkHost = sitecfg.keepworkHost;
 	if not (url:startsWith('/api/') or url:startsWith('/imgs/') or url:startsWith('/css/') or url:startsWith('/js/') or url:startsWith('/jslib/') or url:startsWith('/csslib/') or url:startsWith('/icons/')or url:startsWith('/uploads/') ) then
 		-- 初始化
 		res.__data__ = {};

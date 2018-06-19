@@ -71,7 +71,7 @@ $(function () {
 
 // 获取教学记录
 var getTaughtRecordList = function ( psize, pno, order, reload ) {
-    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true 
+    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true
     $(".have-taught").show();
     $(".have-learn").hide();
     $.get(LESSON_API + "/api/class/taught", {
@@ -87,13 +87,13 @@ var getTaughtRecordList = function ( psize, pno, order, reload ) {
             }
             for(var i = 0; i < response.data.length; i++) {
                 var item = response.data[i];
-                item.lessonCover = item.lessonCover.startsWith('http')?item.lessonCover:keepworkHost + item.lessonCover;
+                item.lessonCover = item.lessonCover.startsWith('http')?item.lessonCover:KEEPWORK_HOST + item.lessonCover;
                 haveTaughtList.append('<div class="have-item">' +
                 '<div class="time">'+ new Date(item.startTime).format("hh:mm dd/MM/yyyy") +'</div>' +
                 '<div class="layout-box">' +
-                '    <a href="' + (keepworkHost + item.lessonUrl)+ '" target="_blank" class="title"><div class="cover" style="background-image: url('+ item.lessonCover +')"></div></a>' +
+                '    <a href="' + (KEEPWORK_HOST + item.lessonUrl)+ '" target="_blank" class="title"><div class="cover" style="background-image: url('+ item.lessonCover +')"></div></a>' +
                 '    <div class="content">' +
-                '        <a href="' + (keepworkHost + item.lessonUrl)+ '" target="_blank" class="title">Lesson '+ item.lessonNo +'：'+ item.lessonTitle +'</a>' +
+                '        <a href="' + (KEEPWORK_HOST + item.lessonUrl)+ '" target="_blank" class="title">Lesson '+ item.lessonNo +'：'+ item.lessonTitle +'</a>' +
                 '        <div class="goals">' +
                 '            <span>Lesson Goals:</span>' +
                 '            <ul>' +
@@ -113,7 +113,7 @@ var getTaughtRecordList = function ( psize, pno, order, reload ) {
 
 // 获取学习记录
 var getLearnRecordList = function ( psize, pno, order, reload ) {
-    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true 
+    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true
     $(".have-taught").hide();
     $(".have-learn").show();
     $.get(LESSON_API + "/api/record/learn", {
@@ -129,17 +129,17 @@ var getLearnRecordList = function ( psize, pno, order, reload ) {
             }
             for(var i = 0; i < response.data.length; i++) {
                 var item = response.data[i];
-                item.lessonCover = item.lessonCover.startsWith('http')?item.lessonCover:keepworkHost + item.lessonCover;
+                item.lessonCover = item.lessonCover.startsWith('http')?item.lessonCover:KEEPWORK_HOST + item.lessonCover;
                 haveLearnList.append('<div class="have-item">' +
                 '<div class="layout-box">' +
-                '    <a href="' + (keepworkHost + item.lessonUrl)+ '" target="_blank" class="title"><div class="cover" style="background-image: url(' + item.lessonCover + ')"></div></a>' +
+                '    <a href="' + (KEEPWORK_HOST + item.lessonUrl)+ '" target="_blank" class="title"><div class="cover" style="background-image: url(' + item.lessonCover + ')"></div></a>' +
                 '    <div class="content">' +
-                '        <a href="' + (keepworkHost + item.lessonUrl)+ '" target="_blank" class="title">Lesson ' + item.lessonNo + '：' + item.lessonTitle + '</a>' +
+                '        <a href="' + (KEEPWORK_HOST + item.lessonUrl)+ '" target="_blank" class="title">Lesson ' + item.lessonNo + '：' + item.lessonTitle + '</a>' +
                 '        <div class="goals">' +
                 '            <span>Lesson Goals:</span>' +
                 '            <ul>' +
                 '                <li>'+ item.goals +'</li>' +
-                '            </ul> ' +   
+                '            </ul> ' +
                 '        </div>' +
                 '        <div class="foot">' +
                 '            <a href="/learnedRecord/' + username + '/' + item.lessonNo + '" class="el-button el-button--primary el-button--medium is-plain">View Summary</a>' +

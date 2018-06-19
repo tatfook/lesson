@@ -184,7 +184,7 @@ $(function(){
     // 发送 email
     $('#sendEmail').on('click', function() {
         $("#emailInput").val("");
-        $(".el-message-box__wrapper , .v-modal").show();      
+        $(".el-message-box__wrapper , .v-modal").show();
     });
 
     $(".sendMessage").on('click', function () {
@@ -202,12 +202,12 @@ $(function(){
     });
 
     $(".closeMessage").on('click', function() {
-        $(".el-message-box__wrapper , .v-modal").fadeOut(500);    
+        $(".el-message-box__wrapper , .v-modal").fadeOut(500);
     })
 
     $('#btnPrint').on('click', function() {
         if(lessonUrl) {
-            $('.recordWrapper').append('<iframe id="keepworkContainer" frameborder="0" width="100%" src="' + keepworkHost + lessonUrl + '?device=print"></iframe>');
+            $('.recordWrapper').append('<iframe id="keepworkContainer" frameborder="0" width="100%" src="' + KEEPWORK_HOST + lessonUrl + '?device=print"></iframe>');
         }
         $('.print-show').show();
 
@@ -227,7 +227,7 @@ $(function(){
     // 全选、取消全选
     $('#cbxCheckAll').on('click', function() {
         var isChecked =$('#cbxCheckAll').prop('checked')
-        $("input[class='cbx-item']").prop("checked", isChecked ); 
+        $("input[class='cbx-item']").prop("checked", isChecked );
     });
     // 子项的选中
     $('.table-wrap').on('click', '.cbx-item', function() {
@@ -236,7 +236,7 @@ $(function(){
             length++;
         });
         isChecked = (length === snArr.length);
-        $("#cbxCheckAll").prop("checked", isChecked ); 
+        $("#cbxCheckAll").prop("checked", isChecked );
     });
     // 改变全部
     $('#btnChangeAll').on('click', function() {
@@ -252,7 +252,7 @@ $(function(){
         });
         console.log(selectedSn);
         cheatRecords(selectedSn);
-    });   
+    });
 });
 
 var tblRecord = $('.record-tbl');
@@ -260,7 +260,7 @@ var summary = [];
 var lessonUrl;
 var snArr = [];
 var getLessonTaughtedRecord = function(reload) {
-    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true 
+    reload = (typeof reload !== 'undefined') ?  reload : true; // reload 缺省时为 true
     $.get(LESSON_API + "/api/class/detail", {
         classId: classId
     }, function (response) {
@@ -284,7 +284,7 @@ var getLessonTaughtedRecord = function(reload) {
                 var quizzRate = ['Rate']; // quizz 正确率
                 var studentDiv = ['Number',0, 0, 0]; // 学生分布
                 if(r.summary[0]) {
-                    
+
                     for(var i = 0; i < r.summary[0].quizNum; i++) {
                         var label = 'Quiz' + (i + 1);
                         quizzLable.push(label);
@@ -314,7 +314,7 @@ var getLessonTaughtedRecord = function(reload) {
                     if(item.accuracyRate < 60) {
                         studentDiv[1] += 1;// <60
                     } else if(item.accuracyRate >=60 && item.accuracyRate <= 80) {
-                        studentDiv[2] += 1;// 60-80 
+                        studentDiv[2] += 1;// 60-80
                     } else if(item.accuracyRate > 80) {
                         studentDiv[3] += 1;// >80
                     }
@@ -381,8 +381,6 @@ var cheatRecords = function(arr) {
     })
 }
 
-// document.domain = 'localhost';
-document.domain = '10.27.26.21'
 // // 计算页面的实际高度，iframe自适应会用到
 // function calcPageHeight(doc) {
 //     var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight);
@@ -395,7 +393,7 @@ document.domain = '10.27.26.21'
 //     var container = parent.document.getElementById('summaryContainer');
 //     if(container) {
 //         container.style.height = height + 100 + 'px';
-//         container.contentWindow.document.getElementsByClassName("header")[0].style.display = 'none'; 
+//         container.contentWindow.document.getElementsByClassName("header")[0].style.display = 'none';
 //         container.contentWindow.document.getElementsByClassName("main")[0].style.padding = "0";
 //         container.contentWindow.document.getElementsByClassName("recordWrapper")[0].style.width = '1080px';
 //         container.contentWindow.document.getElementsByClassName("recordWrapper")[0].style.padding = "40px 2%";

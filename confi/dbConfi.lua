@@ -1,8 +1,8 @@
 local dbConfi = {
 	user = 'root',
-	pwd = 'root',
+	pwd = '',
 	db = 'lesson',
-    host = '10.27.26.21',
+    host = 'localhost',
 	port = '3306'
 }
 
