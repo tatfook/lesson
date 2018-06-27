@@ -1,6 +1,7 @@
 NPL.load("(gl)script/ide/commonlib.lua")
 local express = NPL.load("express")
 local cdkeyBll = NPL.load("../bll/cdkey")
+local commonBll = NPL.load("../bll/common")
 local router = express.Router:new()
 local uuid = NPL.load("uuid")
 
@@ -24,35 +25,65 @@ router:post(
             )
             return
         end
-        uuid.seed()
-        local cdkeyArr = {}
-        for i = 1, number do
-            table.insert(cdkeyArr, uuid())
-        end
-        local objs = {}
-        for i, v in ipairs(cdkeyArr) do
-            cdkeyArr[i] = v:replace("-", "")
-            local obj = {}
-            obj[1] = cdkeyArr[i]
-            obj[2] = 1
-            table.insert(objs, obj)
-        end
-        local num = cdkeyBll.addBatch({"`key`", "state"}, objs)
-        if (num == nil) then
+
+
+        local buildKey = function(user)
+            if tonumber(user.administrator) == 0 then
+                res:send(
+                    {
+                        err = 109,
+                        msg = "permission denied."
+                    }
+                )
+                return
+            end
+
+            uuid.seed()
+            local cdkeyArr = {}
+            for i = 1, number do
+                table.insert(cdkeyArr, uuid())
+            end
+            local objs = {}
+            for i, v in ipairs(cdkeyArr) do
+                cdkeyArr[i] = v:replace("-", "")
+                local obj = {}
+                obj[1] = cdkeyArr[i]
+                obj[2] = 1
+                table.insert(objs, obj)
+            end
+            local num = cdkeyBll.addBatch({"`key`", "state"}, objs)
+            if (num == nil) then
+                res:send(
+                    {
+                        err = 101,
+                        msg = "build cdkey fail."
+                    }
+                )
+                return
+            end
             res:send(
                 {
-                    err = 101,
-                    msg = "build cdkey fail."
+                    err = 0,
+                    data = cdkeyArr
                 }
             )
-            return
         end
-        res:send(
-            {
-                err = 0,
-                data = cdkeyArr
-            }
+
+        -- token
+        local token = req.cookies.token
+        commonBll.auth(
+            token,
+            buildKey,
+            function()
+                res:send(
+                    {
+                        err = 102,
+                        msg = "plz login."
+                    }
+                )
+            end
         )
+
     end
 )
 
@@ -61,43 +92,72 @@ router:get(
     "/list",
     function(req, res, next)
         local rs = {}
-        local p = req.query
-        local where = {}
-        if (p.key) then
-            where["~`key`"] = "%" .. p.key .. "%"
-        end
-        local order = nil
-        -- 排序
-        if (p.sort) then
-            local sort = tonumber(p.sort)
-            if (sort == 1) then
-                -- 生成时间正序
-                order = {createTime = "ASC"}
-            elseif (sort == 101) then
-                -- 生成时间倒序
-                order = {createTime = "DESC"}
-            elseif (sort == 2) then
-                -- 使用时间正序
-                order = {useTime = "ASC"}
-            elseif (sort == 102) then
-                -- 使用时间倒序
-                order = {useTime = "DESC"}
+
+        local getKeyList = function (user)
+            if tonumber(user.administrator) == 0 then
+                res:send(
+                    {
+                        err = 109,
+                        msg = "permission denied."
+                    }
+                )
+                return
             end
+
+            local p = req.query
+            local where = {}
+            if (p.key) then
+                where["~`key`"] = "%" .. p.key .. "%"
+            end
+            local order = nil
+            -- 排序
+            if (p.sort) then
+                local sort = tonumber(p.sort)
+                if (sort == 1) then
+                    -- 生成时间正序
+                    order = {createTime = "ASC"}
+                elseif (sort == 101) then
+                    -- 生成时间倒序
+                    order = {createTime = "DESC"}
+                elseif (sort == 2) then
+                    -- 使用时间正序
+                    order = {useTime = "ASC"}
+                elseif (sort == 102) then
+                    -- 使用时间倒序
+                    order = {useTime = "DESC"}
+                end
+            end
+            local limit = {
+                pageSize = p.psize,
+                pageNo = p.pno
+            }
+            local list, page = cdkeyBll.list(where, nil, order, limit)
+            if (list) then
+                rs.err = 0
+                rs.data = list
+                rs.page = page
+            else
+                rs.err = 101
+                rs.msg = "get cdkey list fail."
+            end
+            res:send(rs)
         end
-        local limit = {
-            pageSize = p.psize,
-            pageNo = p.pno
-        }
-        local list, page = cdkeyBll.list(where, nil, order, limit)
-        if (list) then
-            rs.err = 0
-            rs.data = list
-            rs.page = page
-        else
-            rs.err = 101
-            rs.msg = "get cdkey list fail."
-        end
-        res:send(rs)
+
+        -- token
+        local token = req.cookies.token
+        commonBll.auth(
+            token,
+            getKeyList,
+            function()
+                res:send(
+                    {
+                        err = 102,
+                        msg = "plz login."
+                    }
+                )
+            end
+        )
+
     end
 )
 
