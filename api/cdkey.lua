@@ -28,7 +28,7 @@ router:post(
 
 
         local buildKey = function(user)
-            if tonumber(user.administrator) == 0 then
+            if tonumber(user.roleId) == 10  then
                 res:send(
                     {
                         err = 109,
@@ -94,7 +94,7 @@ router:get(
         local rs = {}
 
         local getKeyList = function (user)
-            if tonumber(user.administrator) == 0 then
+            if tonumber(user.roleId) == 10 then
                 res:send(
                     {
                         err = 109,
