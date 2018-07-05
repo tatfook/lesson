@@ -49,10 +49,10 @@ app:use(function(req, res, next)
 		local accectLang = req["Accept-Language"];
 		-- accectLang = 'en-US'
 		if(lang) then
-			if(lang.value == 'en') then
+			if(lang.value == 'en-US') then
 				resource = lang_en;
 				langStr = 'EN';
-			elseif(lang.value == 'cn') then
+			elseif(lang.value == 'zh-CN') then
 				resource = lang_cn;
 				langStr = 'CN';
 			end

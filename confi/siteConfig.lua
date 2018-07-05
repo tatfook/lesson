@@ -1,6 +1,6 @@
 local siteConfi = {
 	-- keepwork 环境地址
-	keepworkHost = "https://keepwork.com",
+	keepworkHost = "https://stage.keepwork.com",
 	-- keepwork ES 接口地址
 	-- esApi = 'http://10.28.18.4:19200/www_kw_pages/pages/_search', -- online
 	esApi = "http://10.28.18.7:9200/www_kw_pages/pages/_search",
