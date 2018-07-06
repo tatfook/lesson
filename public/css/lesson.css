@@ -1,0 +1,118 @@
+.displayFlex {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+}
+.notselect {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+.lesson-list {
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px 92px;
+}
+.lesson-list .total {
+  margin-bottom: 25px;
+  font-size: 17px;
+  color: #333;
+  font-family: 'ArialMT';
+  font-weight: bold;
+  margin-left: 24px;
+}
+.lesson-list .el-row {
+  margin: 0 -9px;
+}
+.lesson-list .el-col {
+  padding: 0 25px 0;
+  position: relative;
+  margin-bottom: 28px;
+}
+.lesson-list .lesson-cover {
+  display: block;
+  height: 160px;
+  position: relative;
+}
+.lesson-list .lesson-cover:hover :before {
+  content: "";
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: url(/imgs/main/play_btn.png) no-repeat center center;
+  background-size: contain;
+}
+.lesson-list .lesson-cover > div {
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.lesson-list .title {
+  display: block;
+  margin: 12px 0;
+  font-size: 17px;
+  color: #333;
+  font-weight: bold;
+}
+.lesson-list .title:hover {
+  color: #409EFE;
+}
+.lesson-list .time {
+  margin-top: 40px;
+}
+.lesson-list .time span {
+  color: #FF5C5C !important;
+  margin: 0 5px;
+}
+.lesson-list .time,
+.lesson-list .ages,
+.lesson-list .skills {
+  width: 100%;
+  margin-bottom: 10px;
+  color: #818181;
+  font-size: 14px;
+}
+.lesson-list .item {
+  padding: 5px;
+  border: 1px solid rgba(160, 160, 160, 0);
+}
+.lesson-list .item:hover {
+  cursor: pointer;
+  border: 1px solid #a0a0a0;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px rgba(90, 90, 90, 0.44);
+}
+.lesson-list .item:hover .title {
+  color: #409EFE;
+}
+.lesson-list .item:after {
+  content: '';
+  margin-top: 30px;
+  display: block;
+}
+.lesson-list .skills,
+.lesson-list .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: calc(80%);
+  position: absolute;
+}
