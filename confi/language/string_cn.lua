@@ -120,6 +120,9 @@ local string_cn = {
         msg_plz_add_pkg = [[
             学习本课程包的课程，需要先添加课程包。
         ]],
+        msg_successfully_activated = [[
+            授课功能已激活！
+        ]],
         msg_activated_account = [[
             您的账户已激活，不需要重复激活。
         ]],

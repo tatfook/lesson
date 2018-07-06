@@ -132,8 +132,11 @@ local string_en = {
         msg_plz_add_pkg = [[
             Please add the package first.
         ]],
+        msg_successfully_activated = [[
+            The teaching function was successfully activated.
+        ]],
         msg_activated_account = [[
-            The current account has been activated without the need for repeated activation
+            The current account has been activated without the need for repeated activation.
         ]],
         msg_incorrect_cdkey = [[
             Incorrect activation code. Please check it and try again.

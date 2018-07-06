@@ -70,7 +70,13 @@ $(function(){
                 key:val
             },function(response){
                 if( response.err == 0 ){
-                    window.location.href = '/teacherColumn/detail';
+                    openDialog({
+                        width : 'auto',
+                        messageClass : 'open-message',
+                        message : R.msg_successfully_activated
+                    }, function(){
+                        window.location.href = '/teacherColumn/detail';
+                    })
                 }else if( response.err == 123 ){
                     //当前账户已激活不需要重复激活
                     openDialog({
