@@ -201,7 +201,7 @@ gulp.task('init', function (done) {
 
     gulp.src(['public_dev/**/*.less', '!public_dev/css/lib.less'], { base: 'public_dev' }).pipe(pretreatment('.less')).pipe(modifyCssUrls({
         prepend: LESSON_HOST,
-        append: '?' + Math.round(new Date().getTime() / 1000) // cache buster
+        // append: '?' + Math.round(new Date().getTime() / 1000) // cache buster
       })).pipe(chmod({
         owner: {
             read: true,

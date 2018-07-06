@@ -30,7 +30,7 @@ $(function(){
             $('.name').html( userinfo.username );
 
             //用户图片
-            if( !userinfo.portrait.startWith("http") ){
+            if( userinfo.portrait && !userinfo.portrait.startWith("http") ){
                 userinfo.portrait = KEEPWORK_HOST + userinfo.portrait;
             }
             $('.portrait').attr( 'src', userinfo.portrait );
