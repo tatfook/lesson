@@ -45,14 +45,11 @@ app:use(function(req, res, next)
 		-- 获取 Accect Language，优先 Cookie 设置， 然后 Accect Language， 最后默认 en
 		local resource = lang_en; -- 缺省值
 		local langStr = 'EN'; -- 缺省值
-		local lang  = req.cookies.language;
+		local lang  = req.cookies.locale;
 		local accectLang = req["Accept-Language"];
 		-- accectLang = 'en-US'
 		if(lang) then
-			if(lang.value == 'en-US') then
-				resource = lang_en;
-				langStr = 'EN';
-			elseif(lang.value == 'zh-CN') then
+			if(lang.value == 'zh-CN') then
 				resource = lang_cn;
 				langStr = 'CN';
 			end
@@ -60,9 +57,6 @@ app:use(function(req, res, next)
 			if( accectLang:startsWith('zh-CN') ) then
 				resource = lang_cn;
 				langStr = 'CN';
-			elseif( accectLang:startsWith('en-US') ) then
-				resource = lang_en;
-				langStr = 'EN';
 			end
 		end
 		if(req.query.__keepwork__) then

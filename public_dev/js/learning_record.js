@@ -125,7 +125,7 @@ $(function(){
                         item.url = item.nextLearnLesson ? KEEPWORK_HOST + item.nextLearnLesson : KEEPWORK_HOST + item.firstLessonUrl;
                    }
                    //课程包链接
-                   if( !item.packageUrl.startWith("http") ){
+                   if( item.packageUrl && !item.packageUrl.startWith("http") ){
                         item.packageUrl = KEEPWORK_HOST + item.packageUrl;
                     }
                     //课程包列表

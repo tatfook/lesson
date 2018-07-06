@@ -22,7 +22,7 @@ $(function(){
             username = userinfo.username;
 
             //用户图片
-            if( !userinfo.portrait.startWith("http") ){
+            if( userinfo.portrait && !userinfo.portrait.startWith("http") ){
                 userinfo.portrait = KEEPWORK_HOST + userinfo.portrait;
             }
             $('.portrait').attr( 'src', userinfo.portrait );
@@ -75,7 +75,7 @@ $(function(){
                         messageClass : 'open-message',
                         message : R.msg_successfully_activated
                     }, function(){
-                        window.location.href = '/teacherColumn/detail';
+                        window.location.href = LESSON_API + '/teacherColumn/detail';
                     })
                 }else if( response.err == 123 ){
                     //当前账户已激活不需要重复激活

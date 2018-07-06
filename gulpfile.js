@@ -6,7 +6,6 @@
 
 // *************************************************************
 
-
 var gulp = require('gulp');
 var less = require('gulp-less');
 var mincss = require('gulp-minify-css');
@@ -21,8 +20,10 @@ var path = require('path');
 var exec = require('child_process').exec;
 var through = require('through-gulp');
 var treeKill = require('tree-kill');
+var modifyCssUrls = require('gulp-modify-css-urls');
 
-
+var LESSON_HOST = process.env.LESSON_HOST || ""
+console.log("LESSON_HOST: " + LESSON_HOST)
 
 var server_thread = null;
 
@@ -51,7 +52,7 @@ var killServer = function (callbackFun) {
 
 var startServer = function () {
     server_thread = exec('npls bin/www.npl', function (err, stdout, stderr) {
-        
+
     });
     server_thread.stdout.on('data', function (data) {
         console.log(data.toString());
@@ -198,7 +199,10 @@ gulp.task('init', function (done) {
     //    }
     //});
 
-    gulp.src(['public_dev/**/*.less', '!public_dev/css/lib.less'], { base: 'public_dev' }).pipe(pretreatment('.less')).pipe(chmod({
+    gulp.src(['public_dev/**/*.less', '!public_dev/css/lib.less'], { base: 'public_dev' }).pipe(pretreatment('.less')).pipe(modifyCssUrls({
+        prepend: LESSON_HOST,
+        append: '?' + Math.round(new Date().getTime() / 1000) // cache buster
+      })).pipe(chmod({
         owner: {
             read: true,
             write: true,

@@ -26,5 +26,5 @@ https://github.com/caoyongfeng0214/lesson
 
 ```
 npm install gulpjs/gulp.git#4.0 --global
-gulp
+LESSON_HOST="localhost:3000" gulp init
 ```

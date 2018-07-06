@@ -1,5 +1,7 @@
 /node_modules/
 /public/uploads/
+/public/js/
+/public/css/
 *.log
 *.txt
 *.json
