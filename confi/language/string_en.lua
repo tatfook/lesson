@@ -100,6 +100,7 @@ local string_en = {
     hours = "hrs",
     minutes = "mins",
     sort_by_teaching_time = "Click to sort by teaching time",
+    no_teaching_record = "There is no teaching record yet.",
     -- js en-US
     front_resource = {
         include = "Include",

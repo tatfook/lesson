@@ -88,6 +88,7 @@ local string_cn = {
     hours = "小时",
     minutes = "分钟",
     sort_by_teaching_time = "点击按授课时间排序",
+    no_teaching_record = "暂无教学记录！",
     -- js zh-CN
     front_resource = {
         include = "包含",

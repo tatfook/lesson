@@ -28,17 +28,17 @@
                     <div class="lines"><span class="Total-time-hr"></span>{{__data__.string.hours}}<span class="Total-time-min"></span>{{__data__.string.minutes}}</div>
                 </div>
             </div>
-        </div> 
-    </div> 
-    <!-- 没有数据 -->
-    
-    <div class="no-data display-none">
-        <div class="no-data-content">
-            <p>There is no teaching record yet.</p>
-            <a href="/lesson" class="continue el-button el-button--primary el-button--medium"><span>View Lessons</span></a>                           
         </div>
     </div>
-    
+    <!-- 没有数据 -->
+
+    <div class="no-data display-none">
+        <div class="no-data-content">
+            <p>{{__data__.string.no_teaching_record}}</p>
+            <a href="/lesson" class="continue el-button el-button--primary el-button--medium"><span>{{__data__.string.view_lessons}}</span></a>
+        </div>
+    </div>
+
      <!--已教课程列表  -->
      <div class="have-taught display-none">
         <div class="sort-btn">
@@ -51,6 +51,6 @@
         <div class="have-taught-list"></div>
     </div>
 
-</div>    
+</div>
 <script src="{{__data__.baseUrl}}/js/teacher_column.js"></script>
 {{/ content}}

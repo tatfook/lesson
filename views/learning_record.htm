@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="e-col el-col-12 el-col-xs-24">
             <div class="code-summary el-row el-row--flex is-justify-space-around" >
@@ -54,14 +54,14 @@
                     </div>
                 </div>
             </div>
-        </div> 
-    </div>  
+        </div>
+    </div>
     <!-- 推荐人 -->
     <div class="presenter display-none">
         <div class="presenter-content">
-            {{{__data__.string.invinter_tips}}}    
+            {{{__data__.string.invinter_tips}}}
             <div class="el-input">
-                <input type="text" name="presenter-name" autocomplete="off" placeholder="Please input the user name of your referee" class="el-input__inner">
+                <input type="text" name="presenter-name" autocomplete="off" class="el-input__inner">
             </div>
             <div>
                 <button type="button" class="add-presenter el-button el-button--primary el-button--mini"><span>{{__data__.string.invinter_submit}}</span></button>
@@ -74,17 +74,17 @@
         <!-- 没有数据 -->
         <div class="no-data display-none">
             {{{__data__.string.no_package_selected}}}
-            <a href="{{__data__.baseUrl}}/lesson" class="continue el-button el-button--primary el-button--medium"><span>{{__data__.string.view_lessons}}</span></a>                           
+            <a href="{{__data__.baseUrl}}/lesson" class="continue el-button el-button--primary el-button--medium"><span>{{__data__.string.view_lessons}}</span></a>
         </div>
         <!-- 有数据 -->
         <div class="package-list display-none">
             <div class="total">{{__data__.string.includes}} <span class="lesson-total">-</span> {{__data__.string.packages}}</div>
             <div class="el-row">
-                
+
             </div>
         </div>
-        
+
     </div>
-</div>    
+</div>
 <script src="{{__data__.baseUrl}}/js/learning_record.js"></script>
 {{/ content}}
