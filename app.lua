@@ -45,7 +45,7 @@ app:use(function(req, res, next)
 		-- 获取 Accect Language，优先 Cookie 设置， 然后 Accect Language， 最后默认 en
 		local resource = lang_en; -- 缺省值
 		local langStr = 'EN'; -- 缺省值
-		local lang  = req.cookies.locale;
+		local lang  = req.cookies.lang;
 		local accectLang = req["Accept-Language"];
 		-- accectLang = 'en-US'
 		if(lang) then
