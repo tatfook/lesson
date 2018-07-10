@@ -206,27 +206,7 @@ $(function(){
     })
 
     $('#btnPrint').on('click', function() {
-        if(!lessonUrl) {
-            alert("Invalid lesson url")
-            return
-        }
-
-        $('.recordWrapper').append('<iframe id="keepworkContainer" frameborder="0" width="100%" src="' + KEEPWORK_HOST + lessonUrl + '?device=print"></iframe>');
-
-        $('.print-show').show();
-
-        $(".el-loading-mask").show();
-        // prop a dialog
-        var iframeTimer = setInterval(function(){
-            console.log(new Date().getTime());
-            if($('#keepworkContainer').attr('ready') == 'ready') {
-                $(".el-loading-mask").hide();
-                window.print();
-                // dimiss a dialog
-                $("iframe").remove("#keepworkContainer");
-                clearInterval(iframeTimer);
-            }
-        }, 500);
+        window.print();
     });
     // 全选、取消全选
     $('#cbxCheckAll').on('click', function() {
