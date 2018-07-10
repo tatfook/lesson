@@ -224,8 +224,14 @@ $(function(){
     });
     // 改变全部
     $('#btnChangeAll').on('click', function() {
-        console.log(snArr);
-        cheatRecords(snArr);
+        openDialog({
+            width : 'auto',
+            messageClass : 'open-message',
+            message: R.msg_confirm_change_all,
+            cancelBtn: true
+        }, function(){
+            cheatRecords(snArr);
+        })
     });
 
     // 改变选中
@@ -234,7 +240,14 @@ $(function(){
         $.each($('input[class="cbx-item"]:checked'),function(){
             selectedSn.push( parseInt( $(this).attr('data-sn') ) ) ;
         });
-        console.log(selectedSn);
+        openDialog({
+            width : 'auto',
+            messageClass : 'open-message',
+            message: R.msg_confirm_change,
+            cancelBtn: true
+        }, function(){
+            cheatRecords(selectedSn);
+        })
         cheatRecords(selectedSn);
     });
 });
@@ -351,7 +364,7 @@ var appendRecord = function(item) {
     '    <td>' + item.wrongCount + '</td>'+
     '    <td>' + item.emptyCount + '</td>'+
     '    <td class="noprint">'+
-    '        <a class="noprint" target="_blank" href="' + LESSON_API + '/taughtedRecord/details/' + item.recordSn + '/' + item.studentNo + '" class="el-button el-button--primary el-button--mini">View Details</a>'+
+    '        <a class="noprint" target="_blank" href="' + LESSON_API + '/taughtedRecord/details/' + item.recordSn + '/' + item.studentNo + '" class="el-button el-button--primary">View Details</a>'+
     '    </td>'+
     '</tr>');
 }
