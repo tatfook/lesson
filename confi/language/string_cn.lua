@@ -64,7 +64,7 @@ local string_cn = {
     activation_tips = [[
         <p>您已成为本系统的个人用户。如果您是一位教育工作者，</p>
         <p>需要使用授课功能，请在下方输入激活码：</p>
-        <p class="notice">如需获取激活码，请联系******。</p>
+        <p class="notice">如需获取激活码，请联系lixizhi@paraengine.com。</p>
     ]],
     activation_code_input_placeholder = "请输入激活码",
     activation_activate_btn_text = "激活",
@@ -106,7 +106,7 @@ local string_cn = {
         view_summary = "查看课程总结",
         minutes = "分钟",
         msg_first_in = [[
-            <p>欢迎使用PAC课程系统！</p><p>您已获得200知识币的奖励。</p>
+            <p>欢迎使用PAC课程系统！</p><p>您已获得300知识币的奖励。</p>
         ]],
         msg_add_presenter = [[
             恭喜您获得20知识币的奖励。

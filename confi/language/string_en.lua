@@ -76,7 +76,7 @@ local string_en = {
     activation_tips = [[
         <p>You have signed up as a Private User. If you are an educator and wish to get</p>
         <p>access to the teaching function, please input the activation code here.</p>
-        <p class="notice">If you wish to get the activation code, please contact *******.</p>
+        <p class="notice">If you wish to get the activation code, please contact lixizhi@paraengine.com.</p>
     ]],
     activation_code_input_placeholder = "Please input the activation code.",
     activation_activate_btn_text = "Activate",
@@ -118,7 +118,7 @@ local string_en = {
         view_summary = "View Summary",
         minutes = "mins",
         msg_first_in = [[
-            <p>Great to see you!</p><p>Thanks for signing up for a PAC Lesson account.</p><p>You've got a reward of 200 coins.</p>
+            <p>Great to see you!</p><p>Thanks for signing up for a PAC Lesson account.</p><p>You've got a reward of 300 coins.</p>
         ]],
         msg_add_presenter = [[
             Congratulations. You've got a reward of 20 coins.
