@@ -58,7 +58,7 @@ $(function(){
     $('.add-presenter').on('click',function(){
         var val = $('input[name="presenter-name"]').val();
         if( val != '' ){
-            $.post("/api/member/addPresenter",{
+            $.post(LESSON_API + "/api/member/addPresenter",{
                 presenter:val
             },function(response){
                 if( response.err == 0 ){
