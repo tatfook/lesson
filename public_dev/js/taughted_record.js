@@ -367,7 +367,7 @@ var appendRecord = function(item) {
     '    <td>' + item.wrongCount + '</td>'+
     '    <td>' + item.emptyCount + '</td>'+
     '    <td class="noprint">'+
-    '        <a class="noprint" target="_blank" href="/taughtedRecord/details/' + item.recordSn + '/' + item.studentNo + '" class="el-button el-button--primary el-button--mini">View Details</a>'+
+    '        <a class="noprint" target="_blank" href="' + LESSON_API + '/taughtedRecord/details/' + item.recordSn + '/' + item.studentNo + '" class="el-button el-button--primary el-button--mini">View Details</a>'+
     '    </td>'+
     '</tr>');
 }

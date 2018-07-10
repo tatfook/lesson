@@ -101,7 +101,7 @@ var getTaughtRecordList = function ( psize, pno, order, reload ) {
                 '            </ul>' +
                 '        </div>' +
                 '        <div class="foot">' +
-                '            <a href="/taughtedRecord/' + item.classId + '" class="el-button el-button--primary el-button--medium is-plain">View Summary</a>' +
+                '            <a href="' + LESSON_API + '/taughtedRecord/' + item.classId + '" class="el-button el-button--primary el-button--medium is-plain">View Summary</a>' +
                 '        </div>' +
                 '    </div>' +
                 '</div>' +

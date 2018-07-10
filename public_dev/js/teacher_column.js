@@ -154,7 +154,7 @@ $(function(){
                         '            </ul>' +
                         '        </div>' +
                         '        <div class="foot">' +
-                        '            <a href="/taughtedRecord/' + item.classId + '" class="el-button el-button--primary el-button--mini">' + R.view_summary + '</a>' +
+                        '            <a href="' + LESSON_API + '/taughtedRecord/' + item.classId + '" class="el-button el-button--primary el-button--mini">' + R.view_summary + '</a>' +
                         '        </div>' +
                         '    </div>' +
                         '</div>' +
