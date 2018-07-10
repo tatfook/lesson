@@ -514,7 +514,18 @@ router:get(
             {
                 url = sitecfg.esApi,
                 headers = {["content-type"] = "application/json"},
-                postfields = '{"from" : 0, "size" : 100, "query": {"match_phrase_prefix": {"content": "```@LessonPackage styleID: 0 lessonPackage:"}}}' -- jsonString
+                postfields = [[{
+                    "from" : 0,
+                    "size" : 100,
+                    "query": {
+                        "match_phrase_prefix": {
+                            "content": "```@LessonPackage styleID: 0 lessonPackage:"
+                        }
+                    },
+                    "sort": {
+                        "update_time": "desc"
+                    }
+                }]] -- jsonString
             },
             function(err, msg, data)
                 if (data ~= nil) then
