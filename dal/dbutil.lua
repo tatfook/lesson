@@ -9,7 +9,8 @@ local mysql =
 		db = dbcfg.db,
 		user = dbcfg.user,
 		pwd = dbcfg.pwd,
-		host = dbcfg.host
+		host = dbcfg.host,
+		port = dbcfg.port
 	}
 )
 
