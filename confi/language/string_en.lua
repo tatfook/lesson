@@ -149,6 +149,7 @@ local string_en = {
         ]],
         msg_confirm_change_all = [[Are you sure you want to give full marks to all students?]],
         msg_confirm_change = [[Are you sure you want to give full marks to the selected students?]],
+        msg_change_need_selelction = [[Please select students.]],
         btn_ok_txt = "OK",
         btn_ok = "OK",
         btn_cancel = "Cancel"

@@ -137,6 +137,7 @@ local string_cn = {
         ]],
         msg_confirm_change_all = [[您确定要将全部学生的准确率设置为100%吗？]],
         msg_confirm_change = [[您确定要将选中学生的准确率设置为100%吗？]],
+        msg_change_need_selelction = [[请选择学生。]],
         btn_ok_txt = "我知道了",
         btn_ok = "确定",
         btn_cancel = "取消"

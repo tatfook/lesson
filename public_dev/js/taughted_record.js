@@ -240,15 +240,22 @@ $(function(){
         $.each($('input[class="cbx-item"]:checked'),function(){
             selectedSn.push( parseInt( $(this).attr('data-sn') ) ) ;
         });
-        openDialog({
-            width : 'auto',
-            messageClass : 'open-message',
-            message: R.msg_confirm_change,
-            cancelBtn: true
-        }, function(){
-            cheatRecords(selectedSn);
-        })
-        cheatRecords(selectedSn);
+        if(selectedSn.length > 0) {
+            openDialog({
+                width : 'auto',
+                messageClass : 'open-message',
+                message: R.msg_confirm_change,
+                cancelBtn: true
+            }, function(){
+                cheatRecords(selectedSn);
+            })
+        } else {
+            openDialog({
+                width : 'auto',
+                messageClass : 'open-message',
+                message: R.msg_change_need_selelction
+            })
+        }
     });
 });
 
