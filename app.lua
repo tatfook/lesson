@@ -41,6 +41,8 @@ app:use(function(req, res, next)
 	res.__data__ = {};
 	res.__data__.baseUrl = sitecfg.lessonHost;
 	res.__data__.keepworkHost = sitecfg.keepworkHost;
+	res.__data__.isLogin = false;
+	if(req.cookies.token) then res.__data__.isLogin = true end
 	if not (url:startsWith('/api/') or url:startsWith('/imgs/') or url:startsWith('/css/') or url:startsWith('/js/') or url:startsWith('/jslib/') or url:startsWith('/csslib/') or url:startsWith('/icons/')or url:startsWith('/uploads/') ) then
 		-- 获取 Accect Language，优先 Cookie 设置， 然后 Accect Language， 最后默认 en
 		local resource = lang_en; -- 缺省值

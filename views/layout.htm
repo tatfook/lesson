@@ -24,6 +24,11 @@
     {{^__data__.headerShow}}
     <div class="header noprint">
         <div class="nav-bar">
+            <div class="brand">
+                <a href="{{__data__.keepworkHost}}">
+                    <img src="{{__data__.keepworkHost}}/wiki/assets/imgs/icon/logo.svg"/>
+                </a>
+            </div>
             <div class="menu">
                 <a href="{{__data__.baseUrl}}/" class="{{homeCurrent}}">{{__data__.string.home}}</a>
                 <a href="{{__data__.baseUrl}}/lesson" class="{{lessonCurrent}}">{{__data__.string.lessons}}</a>
@@ -31,9 +36,19 @@
                 <!-- <a href="/myRecord" class="{{recordCurrent}}">{{__data__.string.record}}</a> -->
                 <a href="{{__data__.baseUrl}}/learningRecord" class="{{learningCurrent}}">{{__data__.string.learning_record}}</a>
                 <a href="{{__data__.baseUrl}}/teacherColumn" class="{{teacherCurrent}}">{{__data__.string.teacher_column}}</a>
+                <div class="to-download">
+                    <a href="http://www.paracraft.cn/download" target="_blank">Paracraft<i class="el-icon-download"></i></a>
+                </div>
             </div>
-            <div class="to-download">
-                <a href="http://www.paracraft.cn/download" target="_blank">Paracraft<i class="el-icon-download"></i></a>
+            <div class="account">
+                {{#__data__.isLogin}}
+                <a onclick="signout()">{{__data__.string.signout}}</a>
+                {{/__data__.isLogin}}
+                {{^__data__.isLogin}}
+                <a onclick="signin()">{{__data__.string.login}}</a>
+                <a class="diver"/>
+                <a onclick="signup()">{{__data__.string.signup}}</a>
+                {{/__data__.isLogin}}
             </div>
         </div>
     </div>
@@ -41,29 +56,44 @@
     <div class="main">
         {{? content}}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
-        // setInterval(function(){
-            // iFrame 通讯
-            if (window.parent !== window) {
-                var height = $('body').outerHeight() + 400;
-                console.log('lesson echo: ' + height)
-                window.parent.postMessage({cmd:'element_style', selector:'iframeId', style:{'height':height + 'px'}}, KEEPWORK_HOST);
-            }
-        // }, 1000)
-
-        function getCookie(c_name) {
-            if (document.cookie.length>0){
-                c_start=document.cookie.indexOf(c_name + "=")
-                if (c_start!=-1) {
-                    c_start=c_start + c_name.length+1
-                    c_end=document.cookie.indexOf(";",c_start)
-                    if (c_end==-1) c_end=document.cookie.length
-                    return unescape(document.cookie.substring(c_start,c_end))
-                }
-            }
-            return ""
+        function signin() {
+            window.location = KEEPWORK_HOST + '/wiki/login?redirect=' + window.location.href
         }
-        // alert(getCookie("token"));
+        function signup() {
+            window.location = KEEPWORK_HOST + '/wiki/join?redirect=' + window.location.href
+        }
+        function signout() {
+            Cookies.remove('token')
+            Cookies.remove('token', { path: '/' })
+            window.localStorage.removeItem('satellizer_token')
+            window.location.reload()
+        }
     </script>
+    <!-- <script>
+        // // setInterval(function(){
+        //     // iFrame 通讯
+        //     if (window.parent !== window) {
+        //         var height = $('body').outerHeight() + 400;
+        //         console.log('lesson echo: ' + height)
+        //         window.parent.postMessage({cmd:'element_style', selector:'iframeId', style:{'height':height + 'px'}}, KEEPWORK_HOST);
+        //     }
+        // // }, 1000)
+
+        // function getCookie(c_name) {
+        //     if (document.cookie.length>0){
+        //         c_start=document.cookie.indexOf(c_name + "=")
+        //         if (c_start!=-1) {
+        //             c_start=c_start + c_name.length+1
+        //             c_end=document.cookie.indexOf(";",c_start)
+        //             if (c_end==-1) c_end=document.cookie.length
+        //             return unescape(document.cookie.substring(c_start,c_end))
+        //         }
+        //     }
+        //     return ""
+        // }
+        // // alert(getCookie("token"));
+    </script> -->
 </body>
 </html>

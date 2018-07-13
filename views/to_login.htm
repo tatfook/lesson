@@ -34,7 +34,7 @@
         </li>
         </ul>
     </div> -->
-    <p class="info text-center">For more information, please</p>
+    <!-- <p class="info text-center">For more information, please</p> -->
 
     <div class="opt-btn text-center">
         <a type="button" href="{{__data__.keepworkHost}}/wiki/join" class="el-button el-button--primary is-plain">{{__data__.string.signup}}</a>
@@ -43,20 +43,7 @@
 </div>
 <script>
     $('#btnLogin').on('click', function() {
-        var host = location.protocol + '//' + window.location.host;
-        var strWindowFeatures = 'width=800,height=500,resizable=yes';
-        var winObj = window.open(
-            KEEPWORK_HOST + "/wiki/oauth?response_type=code&client_id=1000001&redirect_uri=" +
-            host  + "/login",
-            "keepwork登录", strWindowFeatures);
-        winObj.focus();
-        var loop = setInterval(function () {
-            if (winObj != null && winObj.closed) {
-                clearInterval(loop);
-                //do something
-                location.reload();
-            }
-        }, 500);
+        window.location = KEEPWORK_HOST + '/wiki/login?redirect=' + window.location.href
     })
 
 </script>

@@ -52,6 +52,7 @@ local string_en = {
     packages = "packages",
     signup = "SIGN UP",
     login = "LOGIN",
+    signout = "SIGN OUT",
     coins = "Coins",
     codes_read = "Codes read",
     codes_written = "Codes written",

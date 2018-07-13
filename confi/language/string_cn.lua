@@ -41,6 +41,7 @@ local string_cn = {
     packages = "个课程包",
     signup = "注册",
     login = "登录",
+    signout = "登出",
     coins = "知识币",
     codes_read = "阅读代码",
     codes_written = "书写代码",

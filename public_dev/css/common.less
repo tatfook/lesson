@@ -56,13 +56,22 @@ ol {
         max-width: 1140px;
         margin: 0 auto;
         position: relative;
+        .brand {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            padding: 0 12px;
+            height: 40px;
+            width: 115px;
+        }
         .menu {
             .displayFlex;
             .flexJustifyContent(center);
             list-style: none;
             >a {
                 padding-top:6px;
-                margin: 0 4.5%;
+                margin: 0 2.5%;
                 color: #101010;
                 font-size: 16px;
                 &.current {
@@ -75,10 +84,6 @@ ol {
             }
         }
         .to-download {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 2;
             padding: 0 12px;
             height: 40px;
             line-height: 40px;
@@ -86,11 +91,36 @@ ol {
             .borderRadius(4px);
             color: #409EFE;
             font-size: 12px;
-
+            margin-top: 10px;
+            margin-left: 2.5%;
             i {
-                padding-left: 3px;
                 font-size: 24px;
                 vertical-align: middle;
+            }
+        }
+        .account {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 120px;
+            text-align:right;
+            >a {
+                margin: 6px;
+                color: #101010;
+                font-size: 16px;
+                cursor: pointer;
+                &.current {
+                    color: @themeColor;
+                    border-bottom: 4px solid @themeColor;
+                }
+                &:hover {
+                    color: @themeColor;
+                }
+            }
+
+            .diver {
+                width: 1px;
+                border-right: 1px solid;
             }
         }
     }
@@ -111,11 +141,11 @@ ol {
     }
 }
 
-@media (max-width: 768px) {
-    .header .nav-bar .menu {
-        .flexJustifyContent(flex-start);
-    }
-}
+// @media (max-width: 768px) {
+//     .header .nav-bar .menu {
+//         .flexJustifyContent(flex-start);
+//     }
+// }
 
 @media (min-width: 768px) {
     .container, .header .nav-bar {

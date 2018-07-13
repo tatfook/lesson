@@ -51,7 +51,7 @@ var killServer = function (callbackFun) {
 };
 
 var startServer = function () {
-    server_thread = exec('npls bin/www.npl', function (err, stdout, stderr) {
+    server_thread = exec('npl ./bin/www.npl', function (err, stdout, stderr) {
 
     });
     server_thread.stdout.on('data', function (data) {
